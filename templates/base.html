@@ -94,13 +94,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/account"><button type="button" class="btn btn-outline-primary btn-sm"
-                    style="width: 120px;">test</button></a>
+                <a class="nav-link" href="/account">
+                  <button type="button" class="btn btn-outline-primary btn-sm" style="width: 120px;">{{ current_user.username }}</button>
+                </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="/logout"><button type="button" class="btn btn-primary btn-sm"
-                    style="width:120px;">LOG OUT</button></a>
+                <a class="nav-link" href="/logout">
+                  <button type="button" class="btn btn-primary btn-sm" style="width:120px;">LOG OUT</button>
+                  </a>
               </li>
 
               <li class="nav-item">
