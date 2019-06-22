@@ -1,0 +1,96 @@
+#navbar_header {
+  color: white;
+  width: 100%;
+  position: fixed;
+  z-index: 999999;
+  background-color: white;
+}
+
+#navbar_header .navbar {
+  padding: 0;
+}
+
+#navbar_header .navbar .navbar-image {
+  width: 9rem;
+  margin-left: 10px;
+}
+
+#navbar_header .navbar .searchBox {
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  -o-border-image: initial;
+     border-image: initial;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 36px;
+  position: relative;
+  width: 72px;
+  fill: #1a1a1b;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin-left: 16px;
+  margin-right: 16px;
+  width: auto;
+}
+
+#navbar_header .navbar .searchBox .lable {
+  position: absolute;
+  margin-left: 16px;
+  margin-top: 5px;
+}
+
+#navbar_header .navbar .searchBox .lable .icon {
+  fill: #878a8c;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 5px;
+}
+
+#navbar_header .navbar .searchBox .searchFild {
+  -webkit-appearance: none;
+  background-color: #f6f7f8;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #1c1c1c;
+  display: block;
+  height: 33px;
+  width: 100%;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #edeff1;
+  -o-border-image: initial;
+     border-image: initial;
+  outline: none;
+  padding: 0 16px 0 40px;
+  font-size: 14px;
+}
+
+#navbar_header .navbar .navbar-toggler {
+  color: gray;
+}
+
+#navbar_header .navbar .navbar-toggler:hover {
+  color: black;
+}
+
+#navbar_header .navbar .navbar-toggler .fal {
+  font-size: 1.5rem;
+}
+
+#navbar_header .navbar .collapse {
+  max-width: 450px;
+}
+
+#navbar_header .navbar .navbar-nav .nav-item .nav-link {
+  font-size: 1.25rem;
+  color: gray;
+}
+
+#navbar_header .navbar .navbar-nav .nav-item .nav-link:hover {
+  color: black;
+}
+/*# sourceMappingURL=main.css.map */

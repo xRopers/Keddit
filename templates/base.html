@@ -7,13 +7,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css">
 
-    <!-- <script src="https://kit.fontawesome.com/51dd29d07a.js"></script> -->
-    
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
-    <!-- Link Styles CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <!-- Favicon Icon -->
     <link rel="icon" href="/static/images/keddit_fav.ico">
+    <link rel="stylesheet" type="text/css" href="/static/main.css">
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet">
 
@@ -31,103 +29,123 @@
   {% block loading_pic %}
   {% endblock %}
 
-<section id='navbar_header'>
-  <div class="container-fluid">
-    <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="/">
-        <img class="navbar-image" src="/static/images/keddit_logo_image_dark.svg" alt="Keddit Logo"></a>
+    <section id='navbar_header'>
+      <div class="container-fluid">
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg">
+          <a class="navbar-brand" href="/">
+            <img class="navbar-image" src="/static/images/keddit_logo_image_dark.svg" alt="Keddit Logo">
+          </a>
 
-        <a href="/home"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-globe-americas" style="color:blue;"></i>  Home</button></a>
+          <a href="/home"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-globe-americas"
+                style="color:blue;"></i> Home</button></a>
 
-        <a href="/home"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-chart-line "style="color:blue;"></i>  Popular</button></a>
+          <a href="/home"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-chart-line "
+                style="color:blue;"></i> Popular</button></a>
 
-         <!--Search Bar -->
+          <!--Search Bar -->
 
-        <div class="_3jiriKeNer8y0-1r6oWIFM _2dlTXDaX9JuL0bekTwhV18  dxyly8-3 evryCQ" id="SearchDropdown" >
-          <label class="dxyly8-1 hbthxQ" for="header-search-bar">
-            <svg class="dxyly8-2 jaPcsi" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M15.59,13.91l2.78,2.69a1.25,1.25,0,1,1-1.74,1.8l-2.82-2.73a8,8,0,1,1,1.78-1.76ZM14.64,9.2A5.45,5.45,0,1,0,9.2,14.64,5.45,5.45,0,0,0,14.64,9.2Z"></path></svg>
-          </label>
-          <form action="#" autocomplete="off" method="get">
-            <input type="search" class="dxyly8-0 eelwnH" id="header-search-bar" name="q" placeholder="Search Keddit" role="search" value="">
-          </form>
-        </div>
+          <div class="searchBox" id="SearchDropdown">
+            <label class="lable" for="header-search-bar">
+              <svg class="icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15.59,13.91l2.78,2.69a1.25,1.25,0,1,1-1.74,1.8l-2.82-2.73a8,8,0,1,1,1.78-1.76ZM14.64,9.2A5.45,5.45,0,1,0,9.2,14.64,5.45,5.45,0,0,0,14.64,9.2Z">
+                </path>
+              </svg>
+            </label>
+            <form action="#" autocomplete="off" method="get">
+              <input type="search" class="searchFild" id="header-search-bar" name="q" placeholder="Search Keddit"
+                role="search" value="">
+            </form>
+          </div>
 
 
 
-        <!-- Collapse and add button when screen less than large -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarTogglerDemo02">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav ml-auto">
+          <!-- Collapse and add button when screen less than large -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+            <!-- <span class="navbar-toggler-icon"></span> -->
+            <i class="fal fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ml-auto">
 
-            <!-- If user is logged in -->
-            {% if current_user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="/home"><i class="fas fa-chart-line fa-2x"></i></a>
-            </li>
+              <!-- If user is logged in -->
+              <!-- {% if current_user.is_authenticated %} -->
               <li class="nav-item">
-              <a class="nav-link" href="/home"><i class="fas fa-chart-bar fa-2x"></i></a>
-            </li>
-
-             <li class="nav-item">
-              <a class="nav-link" href="/communities"><i class="fas fa-layer-group fa-2x"></i></a>
-            </li>
-
+                <a class="nav-link" href="/home">
+                  <i class="fas fa-chart-line"></i>
+                </a>
+              </li>
               <li class="nav-item">
-              <a class="nav-link" href="/home"><i class="fas fa-toggle-off fa-2x"></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/account"><button type="button" class="btn btn-outline-primary btn-sm" style="width: 120px;">{{ current_user.username }}</button></a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/logout"><button type="button" class="btn btn-primary btn-sm" style="width:120px;">LOG OUT</button></a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/home"><i class="fas fa-user-astronaut fa-2x"></i></a>
-            </li>
-
-            <!-- If not logged in, show ... -->
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="/home"><i class="fas fa-chart-line fa-2x"></i></a>
-            </li>
-              <li class="nav-item">
-              <a class="nav-link" href="/home"><i class="fas fa-chart-bar fa-2x"></i></a>
-            </li>
-
-             <li class="nav-item">
-              <a class="nav-link" href="/communities"><i class="fas fa-layer-group fa-2x"></i></a>
-            </li>
+                <a class="nav-link" href="/home">
+                  <i class="fas fa-chart-bar"></i>
+                </a>
+              </li>
 
               <li class="nav-item">
-              <a class="nav-link" href="/home"><i class="fas fa-toggle-off fa-2x"></i></a>
-            </li>
+                <a class="nav-link" href="/communities">
+                  <i class="fas fa-layer-group"></i>
+                </a>
+              </li>
 
               <li class="nav-item">
-              <a class="nav-link" href="/login"> <button type="button" class="btn btn-outline-primary btn-sm" style="width: 120px;">LOG IN</button></a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/registration"><button type="button" class="btn btn-primary btn-sm" style="width:120px;">SIGN UP</button></a>
-            </li>
-
-             </li>
+                <a class="nav-link" href="/home">
+                  <i class="fas fa-toggle-off"></i>
+                </a>
+              </li>
               <li class="nav-item">
-              <a class="nav-link" href="/home"><i class="fas fa-user-astronaut fa-2x"></i></a>
-            </li>
+                <a class="nav-link" href="/account"><button type="button" class="btn btn-outline-primary btn-sm"
+                    style="width: 120px;">test</button></a>
+              </li>
 
-          
-            {% endif %} 
-          </ul> 
-        </div>
-    </nav>
-  </div>
-</section>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout"><button type="button" class="btn btn-primary btn-sm"
+                    style="width:120px;">LOG OUT</button></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/home">
+                  <i class="fas fa-user-astronaut"></i>
+                </a>
+              </li>
+
+              <!-- If not logged in, show ... -->
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/home"><i class="fas fa-chart-line fa-2x"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/home"><i class="fas fa-chart-bar fa-2x"></i></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/communities"><i class="fas fa-layer-group fa-2x"></i></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/home"><i class="fas fa-toggle-off fa-2x"></i></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/login"> <button type="button" class="btn btn-outline-primary btn-sm"
+                    style="width: 120px;">LOG IN</button></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/registration"><button type="button" class="btn btn-primary btn-sm"
+                    style="width:120px;">SIGN UP</button></a>
+              </li>
+
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/home"><i class="fas fa-user-astronaut fa-2x"></i></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </section>
 
 
 
