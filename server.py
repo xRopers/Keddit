@@ -56,7 +56,7 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
 # Required to use Flask sessions and the debug toolbar
-app.secret_key = "ABC123"
+app.secret_key = config["secret_key"]["keddit"]
 
 # Raises an error in Jinja2 for to debug
 app.jinja_env.undefined = StrictUndefined
@@ -68,7 +68,7 @@ def load_user(user_id):
 
 
 #==========================
-cloudinary_prefix = 'https://res.cloudinary.com/kumy/image/upload/v' 
+cloudinary_prefix = 'https://res.cloudinary.com/' + config["cloudinary"]["name"] + '/image/upload/v' 
 
 
 # Landing Page route
