@@ -91,3 +91,73 @@
     }
 }
 // =============================
+// coummunity image=============
+.community_image{
+    padding-top: 57px;
+    margin-bottom: -90px;
+    .container-fluid{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+// =============================
+// sideBar======================
+.content-section.sideBar{
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+// =============================
+// article content==============
+.content-section{
+    position: relative;
+    background: white;
+    background-color: rgba(255, 255, 255, 100);
+    margin-bottom: 10px;
+    color: rgb(135, 138, 140);
+    fill: rgb(135, 138, 140);
+    overflow: hidden;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-image: initial;
+    padding: 0 20px 0 40px;
+    border-radius: 4px;
+    transition: color 0.5s ease 0s, fill 0.5s ease 0s, box-shadow 0.5s ease 0s;
+    
+    .arrow-container {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        padding-top: 10px;
+    }
+}
+.vote-container, .vote-container2 {
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    padding: 0 4px 8px 0;
+    width: 40px;
+    border-left: 4px solid transparent;
+}
+.votecount, .votecount_comment{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+}
+.article-img{
+    margin-top: 10px;
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+}
+.article-img_comment {
+    margin-top: 10px;
+    height: 35px;
+    width: 35px;
+    margin-right: 16px;
+}
+.article-metadata{
+    margin-top: 10px;
+    padding-bottom: 1px;
+    margin-bottom: 7px;
+}

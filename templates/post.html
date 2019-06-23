@@ -8,7 +8,6 @@
    div.loading_pic{
     background-image: url(/static/images/{{community.community_name}}.gif);
   }
-
 </style>
 {% endblock%}
 {% block community %}{{community.community_name}}{% endblock%}
@@ -30,187 +29,161 @@
 {% block content %}
 
 
-        <!-- Main USER POST -->
+<!-- Main USER POST -->
 
-        <!-- Hidden Field -->
-        <input type="hidden" id="post_id" name="post_id" value="{{post.id}}">
-       <input type="hidden" id="community_name" name="community_name" value="{{community.community_name}}">
-
-        <article class="media content-section">
-          <!-- Upvotes/Downvotes -->
-          <div class="vote-container">
-            <div class="arrow-container">
-            <div class="up"><i class="upvote fas fa-arrow-alt-up fa-lg"></i></div>
-        
-
-            <div class="votecount"> {{rating_count}} </div>
-
-
-            <div class="down"><i class="downvote fas fa-arrow-alt-down fa-lg"></i></a></div>
-           
-
-          </div>
-        </div>
-
-
-
-
-
-
-
-
-       
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='images/' + post.creator.image_file) }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="subkeddit-title mr-2" href="/k/{{community.community_name}}"><small class="text-muted"></small>k/{{community.community_name}}</a>
-
-              <small class="text-muted">• Posted by <a class="subkeddit-user mr-1" href="#">u/{{ post.creator.username }}</a></small>
-              <small class="text-muted">on {{ post.date.strftime('%Y-%m-%d') }}</small>
-          
-
-              {% if post.creator == current_user %}
-              <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" style="border-radius: 24px;" href="/k/{{community.community_name}}/post/{{post.id}}/update">Update</a>
-                <button type="button" style="border-radius: 24px;" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
-              </div>
-              {% endif %}
-            </div>
-
-            <h5><a class="article-title" href="/k/{{community.community_name}}/post/{{post.id}}/update">{{ post.title }}</a></h5>
-            <p class="article-content">{{ post.body }}</p>
-
-             <!-- Put picture here -->
-          {% if post.image_url %}
-          <img class="post-img" src="{{ post.cloudinary_url }}">
-          {% endif %}
-
-            <p><small class="text-muted"><i class="comments fas fa-comment-alt"></i> {{comments_count}} Comments</small>
-            <!-- <small class="text-muted"><i class="likes far fa-thumbs-up"></i></i> {{upvote_count}} likes</small>
-            <small class="text-muted"><i class="dislikes far fa-thumbs-down"></i></i> {{downvote_count}} dislikes</small> -->
-
-            <small class="text-muted"><i class="fas fa-trophy ml-2"></i> Give Award</small>
-
-        <small class="text-muted"><i class="fas fa-save ml-2"></i> Save</small>
-
-        <small class="text-muted"><i class="fas fa-share ml-2"></i></i> Share</small>
-            
-            </p>
-            
-          </div>
-        </article>
-     
-
-        <!-- Modal  which is a drop down confirmation to "delete" box -->
-  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <form action="/k/{{community.community_name}}/post/{{post.id}}/delete" method="POST">
-            <input class="btn btn-danger" type="submit" value="Delete">
-          </form>
-        </div>
+<!-- Hidden Field -->
+<input type="hidden" id="post_id" name="post_id" value="{{post.id}}">
+<input type="hidden" id="community_name" name="community_name" value="{{community.community_name}}">
+<article class="media content-section">
+  <!-- Upvotes/Downvotes -->
+  <div class="vote-container">
+    <div class="arrow-container">
+      <div class="up">
+        <i class="upvote fas fa-arrow-alt-up fa-lg"></i>
+      </div>
+      <div class="votecount"> {{rating_count}} </div>
+      <div class="down">
+        <i class="downvote fas fa-arrow-alt-down fa-lg"></i>
       </div>
     </div>
   </div>
-    
+  <img class="rounded-circle article-img" src="{{ url_for('static', filename='images/' + post.creator.image_file) }}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="subkeddit-title mr-2" href="/k/{{community.community_name}}"><small class="text-muted"></small>k/{{community.community_name}}</a>
+      <small class="text-muted">• Posted by <a class="subkeddit-user mr-1" href="#">u/{{ post.creator.username }}</a></small>
+      <small class="text-muted">on {{ post.date.strftime('%Y-%m-%d') }}</small>
+      {% if post.creator == current_user %}
+      <div>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" style="border-radius: 24px;" href="/k/{{community.community_name}}/post/{{post.id}}/update">Update</a>
+        <button type="button" style="border-radius: 24px;" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+      </div>
+      {% endif %}
+    </div>
+    <h5>
+      <a class="article-title" href="/k/{{community.community_name}}/post/{{post.id}}/update">{{ post.title }}</a>
+    </h5>
+    <p class="article-content">{{ post.body }}</p>
+    <!-- Put picture here -->
+    {% if post.image_url %}
+    <img class="post-img" src="{{ post.cloudinary_url }}">
+    {% endif %}
+    <p><small class="text-muted"><i class="comments fas fa-comment-alt"></i> {{comments_count}} Comments</small>
+      <!-- <small class="text-muted"><i class="likes far fa-thumbs-up"></i></i> {{upvote_count}} likes</small>
+            <small class="text-muted"><i class="dislikes far fa-thumbs-down"></i></i> {{downvote_count}} dislikes</small> -->
+      <small class="text-muted"><i class="fas fa-trophy ml-2"></i> Give Award</small>
+      <small class="text-muted"><i class="fas fa-save ml-2"></i> Save</small>
+      <small class="text-muted"><i class="fas fa-share ml-2"></i> Share</small>
+    </p>
+  </div>
+</article>
+
+
+<!-- Modal  which is a drop down confirmation to "delete" box -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form action="/k/{{community.community_name}}/post/{{post.id}}/delete" method="POST">
+          <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Create Post Button -->
 <!--   <div>
     <a class='btn btn-outline-primary btn-sm' href="/k/{{community.community_name}}/post/{{post.id}}/comment/new" role='button'>Create Comment</a>
   </div><br> -->
 
-  <div class="comment_title">Comments</div>
+<div class="comment_title">Comments</div>
 
-  <!-- Send SMS -->
+<!-- Send SMS -->
 <!--   <div>
     <a class='btn btn-outline-primary btn-sm' href="/k/{{community.community_name}}/post/{{post.id}}/send_sms" role='button'>Send SMS</a>
   </div><br> -->
 
 
-  <!-- Display comments -->
-  {% for comment in comments %}
+<!-- Display comments -->
+{% for comment in comments %}
 
-  <input type="hidden" id="comment_id" name="comment_id" value="{{comment.id}}">
-
-    <article class="media content-section">
-
-      <!-- Upvotes/Downvotes -->
+<input type="hidden" id="comment_id" name="comment_id" value="{{comment.id}}">
+<article class="media content-section">
+  <!-- Upvotes/Downvotes -->
   <div class="vote-container2">
-    <div class="up_comment_list"><a href="/k/{{community.community_name}}/post/{{post.id}}/comment/{{comment.id}}/upvote"><i data-id="{{comment.id}}" id="upvote{{comment.id}}"class="post_comment_up fas fa-arrow-alt-up fa-lg"></i></a></div>
-
-   <!--  <div class="votecount_comment" id="votecount_comment{{comment.id}}"> {{votes[loop.index0]}} </div>
- -->
-    <div class="down_comment_list"><a href="/k/{{community.community_name}}/post/{{post.id}}/comment/{{comment.id}}/downvote"><i data-id="{{comment.id}}" id="downvote{{comment.id}}" class="post_comment_down  fas fa-arrow-alt-down fa-lg"></i></a></div>
-  </div>
-
-      <img class="rounded-circle article-img_comment" src="{{ url_for('static', filename='images/' + comment.creator.image_file) }}">
-      <div class="media-body">
-        <div class="article-metadata">
-          <a class="mr-1" href="/k/{{community.community_name}}/post/{{post.id}}/comment/{{comment.id}}">{{ comment.creator.username }}</a>
-
-            <small class="votecount_comment mr-1" style="color:gray" id="votecount_comment{{comment.id}}" class="text-muted">{{votes[loop.index0]}} points</small>
-
-          <small class="text-muted">· {{ comment.date.strftime('%Y-%m-%d') }}</small>
-        </div>      
-        <p class="article-content">{{ comment.body }}</p>
-
-
-        <small class="text-muted ml-2"> Save</small>
-
-        <small class="text-muted ml-2"> Share</small>
-
-
-        <small class="text-muted ml-2"> Report</small>
+    <div class="arrow-container">
+      <div class="up_comment_list">
+        <a href="/k/{{community.community_name}}/post/{{post.id}}/comment/{{comment.id}}/upvote">
+          <i data-id="{{comment.id}}" id="upvote{{comment.id}}" class="post_comment_up fas fa-arrow-alt-up fa-lg"></i>
+        </a>
       </div>
-    </article>
- {% endfor %}
+      <!--  <div class="votecount_comment" id="votecount_comment{{comment.id}}"> {{votes[loop.index0]}} </div>
+ -->
+      <div class="down_comment_list">
+        <a href="/k/{{community.community_name}}/post/{{post.id}}/comment/{{comment.id}}/downvote">
+          <i data-id="{{comment.id}}" id="downvote{{comment.id}}" class="post_comment_down  fas fa-arrow-alt-down fa-lg"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <img class="rounded-circle article-img_comment" src="{{ url_for('static', filename='images/' + comment.creator.image_file) }}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-1" href="/k/{{community.community_name}}/post/{{post.id}}/comment/{{comment.id}}">{{ comment.creator.username }}</a>
+      <small class="votecount_comment mr-1" style="color:gray" id="votecount_comment{{comment.id}}" class="text-muted">{{votes[loop.index0]}} points</small>
+      <small class="text-muted">· {{ comment.date.strftime('%Y-%m-%d') }}</small>
+    </div>
+    <p class="article-content">{{ comment.body }}</p>
+    <small class="text-muted ml-2"> Save</small>
+    <small class="text-muted ml-2"> Share</small>
+    <small class="text-muted ml-2"> Report</small>
+  </div>
+</article>
+{% endfor %}
 
 
 
 {% endblock content %}
 
 {% block sidebar %}
-    <div class="ad col-md-4">
-      <div class="content-section">
-        <h5><img class="sidebar-image" src="/static/images/kristen_snoo.png" alt="Keddit Logo">  Conversation</h5>
+<div class="ad col-md-4">
+  <div class="content-section">
+    <h5><img class="sidebar-image" src="/static/images/kristen_snoo.png" alt="Keddit Logo"> Conversation</h5>
+    <p class='text-muted'><small>Vote, comment, and share. Remember to be happy and have fun.</small>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-light"><a href="/k/{{community.community_name}}/post/{{post.id}}/comment/new"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-comment-alt fa-lg mr-2"
+                style="color:#e5c100;"></i>
+              Comment</button></a></li>
+        <li class="list-group-item list-group-item-light"><a href="#"><button type="button" class="btn btn-light btn-sm mr-2" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fas fa-mobile-alt fa-lg mr-2"
+                style="color:#7289da;"></i> Share
+              Post</button></a>
+        <li class="list-group-item list-group-item-light"><a href="/home"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-chart-line fa-lg mr-2" style="color:#FF4500;"></i>
+              Popular</button></a></li>
+        <li class="list-group-item list-group-item-light"><a href="/account"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-user-astronaut fa-lg mr-2 " style="color:#BA55D3;"></i>
+              Account</button></a></li>
+      </ul>
+    </p>
+  </div>
 
-      
-        
-        <p class='text-muted'><small>Vote, comment, and share. Remember to be happy and have fun.</small>
-          <ul class="list-group">
-            <li class="list-group-item list-group-item-light"><a href="/k/{{community.community_name}}/post/{{post.id}}/comment/new"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-comment-alt fa-lg mr-2" style="color:#e5c100;"></i>  Comment</button></a></li>
+  <!-- ================= -->
 
-            <li class="list-group-item list-group-item-light"><a href="#"><button type="button" class="btn btn-light btn-sm mr-2" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fas fa-mobile-alt fa-lg mr-2" style="color:#7289da;"></i>  Share Post</button></a>
-
-            <li class="list-group-item list-group-item-light"><a href="/home"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-chart-line fa-lg mr-2"style="color:#FF4500;"></i>  Popular</button></a></li>
-
-            <li class="list-group-item list-group-item-light"><a href="/account"><button type="button" class="btn btn-light btn-sm mr-2"><i class="fas fa-user-astronaut fa-lg mr-2 "style="color:#BA55D3;"></i>  Account</button></a></li>
-          </ul>
-        </p>
-      </div>
-
-        <!-- ================= -->
-
-      <div class="content-section">
-        <h6 class="text-muted"> Advertisement</h6>
-
-      
-        
-          
-            <div class="ad-gif">
-              <img class="ad-gif" src="/static/images/capshield.gif">
-            </div>
-            <p class="text-muted"><small><i>Shield Love, Condemn Hate.</i></small></p>
-        </div>
+  <div class="content-section">
+    <h6 class="text-muted"> Advertisement</h6>
+    <div class="ad-gif">
+      <img class="ad-gif" src="/static/images/capshield.gif">
     </div>
+    <p class="text-muted"><small><i>Shield Love, Condemn Hate.</i></small></p>
+  </div>
+</div>
 
 <!-- MODAL SHARE POST ============================================================= -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -225,31 +198,25 @@
       <div class="modal-body">
         <form action="/k/{{community.community_name}}/post/{{post.id}}/send_sms" method="POST">
           {{form.hidden_tag()}}
-
           <div class="form-group">
             {{form.number.label(class="form-control-label")}}
             {{form.number(class="form-control form-control-lg")}}
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Message:</label>
-            
             <h5><a class="article-title" href="#">{{ post.title }}</a></h5>
             <p class="article-content">{{ post.body }}</p>
-
-             <!-- Put picture here -->
-          {% if post.image_url %}
-          <img class="post-img" src="{{ post.cloudinary_url }}">
-          {% endif %}
+            <!-- Put picture here -->
+            {% if post.image_url %}
+            <img class="post-img" src="{{ post.cloudinary_url }}">
+            {% endif %}
           </div>
-     
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <div id="sendtext" style="margin-top:15px;"class="form-group">
-            {{form.submit(class="btn btn-outline-info")}}
-         </div>
-
-       </form>
+        <div id="sendtext" style="margin-top:15px;" class="form-group">
+          {{form.submit(class="btn btn-outline-info")}}
+        </div>
       </div>
     </div>
   </div>

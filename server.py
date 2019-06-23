@@ -56,7 +56,7 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 
 # Required to use Flask sessions and the debug toolbar
-app.secret_key = "ABC123"
+app.secret_key = config["secret_key"]["keddit"]
 
 # Raises an error in Jinja2 for to debug
 app.jinja_env.undefined = StrictUndefined
@@ -68,7 +68,8 @@ def load_user(user_id):
 
 
 #==========================
-cloudinary_prefix = 'https://res.cloudinary.com/kumy/image/upload/v' 
+cloudinary_prefix = 'https://res.cloudinary.com/' + \
+    config["cloudinary"]["name"] + '/image/upload/v'
 
 
 # Landing Page route
@@ -834,7 +835,7 @@ def send_twilio_sms(community_name, post_id):
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the point
     # that we invoke the DebugToolbarExtension
-    app.debug = False
+    app.debug = True
 
     connect_to_db(app)
     login_manager.init_app(app)
