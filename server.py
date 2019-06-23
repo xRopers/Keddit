@@ -3,20 +3,20 @@ import os
 import secrets
 from jinja2 import StrictUndefined
 
-from flask import (Flask, render_template, request, flash, redirect, 
+from flask import (Flask, render_template, request, flash, redirect,
                     session, url_for, abort, jsonify)
 from sqlalchemy import desc
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import (connect_to_db, db, User, Community, CommunityMembers, 
+from model import (connect_to_db, db, User, Community, CommunityMembers,
                     Post, PostRatings, Comment, CommentRatings)
-from forms import (RegistrationForm, LoginForm, CommunityForm, 
+from forms import (RegistrationForm, LoginForm, CommunityForm,
                     AccountForm, PostForm, CommentForm, GiphyForm, SendTextForm)
 from flask_bcrypt import Bcrypt
-from flask_login import (LoginManager, login_user, logout_user, 
+from flask_login import (LoginManager, login_user, logout_user,
                         login_required, current_user)
 import pprint
-import json 
+import json
 with open('config/config.json', 'r') as f:
     config = json.load(f)
 # ========================================================
@@ -37,8 +37,8 @@ import cloudinary.uploader
 import cloudinary.api
 cloudinary.config(
   cloud_name = config['cloudinary']['name'],
-  api_key = config['cloudinary']['api_key'],  
-  api_secret = config['cloudinary']['api_secret']  
+  api_key = config['cloudinary']['api_key'],
+  api_secret = config['cloudinary']['api_secret']
 )
 # print(dir(cloudinary))
 
@@ -68,8 +68,7 @@ def load_user(user_id):
 
 
 #==========================
-cloudinary_prefix = 'https://res.cloudinary.com/' + \
-    config["cloudinary"]["name"] + '/image/upload/v'
+cloudinary_prefix = 'https://res.cloudinary.com/' + config["cloudinary"]["name"] + '/image/upload/v'
 
 
 # Landing Page route
@@ -79,7 +78,7 @@ def home():
 
     form =  LoginForm()
     signup = RegistrationForm()
-   
+
 
     return render_template("landing_page.html", form = form, signup=signup)
 
@@ -105,7 +104,7 @@ def register_form():
         db.session.commit()
         flash(f'Account created for {form.username.data}! Please log in.', 'success')
         return redirect('/login')
-    
+
     return render_template("registration.html", form=form)
 
 # Login route
@@ -124,7 +123,7 @@ def login():
             flash("You are now logged in!", 'success')
 
           # Redirect to Front Page after logging in
-            return redirect("/home") 
+            return redirect("/home")
         else:
             flash('Login Unsucessful. Please check email and password.',
                                                                     'danger')
@@ -148,7 +147,7 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/images', picture_fn)
-    
+
     form_picture.save(picture_path)
 
     return picture_fn
@@ -174,7 +173,7 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='images/' + current_user.image_file)
-    return render_template('account.html', image_file=image_file, 
+    return render_template('account.html', image_file=image_file,
                                                             form=form)
 
 # ******************************
@@ -201,7 +200,7 @@ def frontpage():
         communities.append(post.community.community_name)
 
         # if post.cloud_version != None and post.cloud_version != None and post.cloud_public_id != None and post.cloud_format != None:
-          
+
         # if post.cloudinary_url != None:
             # cloudinary_image.append(post.cloudinary_url)
 
@@ -255,7 +254,7 @@ def view_community(community_name):
     members_count = CommunityMembers.query.filter_by(community_id=community.id).count()
     # comments_count = Comment.query.filter_by(post_id=posts.id).count()
 
-    
+
 
     # if post.cloud_version != None and post.cloud_version != None and post.cloud_public_id != None and post.cloud_format != None:
     #     cloudinary_url = cloudinary_prefix + post.cloud_version + "/" + post.cloud_public_id + post.cloud_format
@@ -263,7 +262,7 @@ def view_community(community_name):
     # else:
     #     cloudinary_url = None
 
-    
+
     votes = []
     comments = []
     cloudinary_image=[]
@@ -278,15 +277,15 @@ def view_community(community_name):
 
         #cloud the prefixes and other things then add together then append
         if post.cloud_version != None and post.cloud_version != None and post.cloud_public_id != None and post.cloud_format != None:
-        
+
             cloudinary_image.append(post.cloudinary_url)
             print(cloudinary_image)
 
     print(comments, "**********************")
 
-        
 
-    return render_template('community.html', community=community, posts=posts, 
+
+    return render_template('community.html', community=community, posts=posts,
                         members_count=members_count, votes = votes, comments=comments,
                         cloudinary_image=cloudinary_image)
 
@@ -331,7 +330,7 @@ def new_post(community_name):
             print(cloudinary_response)
             print(dir(cloudinary_response))
             print(cloudinary_response['public_id'])
-            cloudinary_url = cloudinary_prefix + str(cloudinary_response['version']) + "/" + str(cloudinary_response['public_id']) + "." + str(cloudinary_response['format']) 
+            cloudinary_url = cloudinary_prefix + str(cloudinary_response['version']) + "/" + str(cloudinary_response['public_id']) + "." + str(cloudinary_response['format'])
             print('Sassy' * 100)
             print(cloudinary_url)
             #cloudinary_response.public_idj example to get items
@@ -355,7 +354,7 @@ def new_post(community_name):
             flash('Your post has been created!', 'success')
             # How to route user back to the community's page efficiently?
             return redirect('/k/'+community_name)
-    return render_template('create_post.html', form=form, community=community, 
+    return render_template('create_post.html', form=form, community=community,
                                 legend='New Post', members_count=members_count)
 
 
@@ -459,7 +458,7 @@ def giphy(query):
     # In a GIPHY object, we need an array of original url's. Element of 5 items and return it's urls.
     # In the front end, display these urls as images.
     # Put the giphy url in the Post table instead of the image url
-    # When I choose on the front end the giphy I want, 
+    # When I choose on the front end the giphy I want,
 
     return json.dumps(data_list, sort_keys=True, indent=4)
 
@@ -475,7 +474,7 @@ def post(post_id, community_name):
 
     community = Community.query.filter_by(community_name=community_name).first()
     members_count = CommunityMembers.query.filter_by(community_id=community.id).count()
-   
+
 
     comments = Comment.query.filter_by(post_id=post_id).all()
     comments_count = Comment.query.filter_by(post_id=post_id).count()
@@ -496,9 +495,9 @@ def post(post_id, community_name):
         downvote = CommentRatings.query.filter(CommentRatings.comment_id==comment.id, CommentRatings.downvote>=1).count()
         votes.append(upvote - downvote)
 
-    return render_template('post.html', post=post, community=community, 
-                                        comments=comments, 
-                                        comments_count=comments_count, 
+    return render_template('post.html', post=post, community=community,
+                                        comments=comments,
+                                        comments_count=comments_count,
                                         rating_count=rating_count,
                                         upvote_count=upvote,
                                         downvote_count=downvote, votes=votes,
@@ -521,10 +520,10 @@ def update_post(post_id, community_name):
         db.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect('/k/'+community_name+'/post/'+str(post.id))
-    elif request.method == 'GET':    
+    elif request.method == 'GET':
         form.title.data=post.title
         form.content.data=post.body
-    return render_template('create_post.html', form=form, post=post,community=community, 
+    return render_template('create_post.html', form=form, post=post,community=community,
                                      legend='Update Post', members_count=members_count)
 # DELETE POST
 @app.route("/k/<community_name>/post/<int:post_id>/delete", methods=['POST'])
@@ -542,7 +541,7 @@ def delete_post(post_id, community_name):
     community = Community.query.filter_by(community_name=community_name).first()
     if post.creator != current_user:
         abort(403)
-    
+
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
@@ -550,7 +549,7 @@ def delete_post(post_id, community_name):
 
 
 # CREATE COMMENT
-@app.route("/k/<community_name>/post/<int:post_id>/comment/new", 
+@app.route("/k/<community_name>/post/<int:post_id>/comment/new",
                                                         methods=['GET','POST'])
 @login_required
 def create_comment(post_id, community_name):
@@ -575,7 +574,7 @@ def comment(post_id, community_name, comment_id):
     post = Post.query.get_or_404(post_id)
     community = Community.query.filter_by(community_name=community_name).first()
     members_count = CommunityMembers.query.filter_by(community_id=community.id).count()
-    
+
     comment = Comment.query.get(comment_id)
 
 
@@ -585,7 +584,7 @@ def comment(post_id, community_name, comment_id):
     rating_count = upvote - downvote
 
 
-    return render_template('comment.html', post=post, community=community, 
+    return render_template('comment.html', post=post, community=community,
                                     comment=comment, rating_count=rating_count,
                                     members_count=members_count)
 
@@ -593,7 +592,7 @@ def comment(post_id, community_name, comment_id):
 
 
 # UPDATE COMMENT
-@app.route("/k/<community_name>/post/<int:post_id>/comment/<int:comment_id>/update", 
+@app.route("/k/<community_name>/post/<int:post_id>/comment/<int:comment_id>/update",
                                                         methods=['GET', 'POST'])
 @login_required
 def update_comment(post_id, community_name, comment_id):
@@ -609,9 +608,9 @@ def update_comment(post_id, community_name, comment_id):
         db.session.commit()
         flash('Your post has been updated!', 'success')
         return redirect('/k/'+community_name+'/post/'+str(post.id))
-    elif request.method == 'GET':    
+    elif request.method == 'GET':
         form.content.data=comment.body
-    return render_template('create_comment.html', form=form, post=post,community=community, 
+    return render_template('create_comment.html', form=form, post=post,community=community,
                                 legend='Update Post', members_count=members_count)
 # DELETE COMMENT
 @app.route("/k/<community_name>/post/<int:post_id>/comment/<int:comment_id>/delete",
@@ -729,7 +728,7 @@ def user_account(username):
     user= User.query.filter_by(username=username).first_or_404()
     posts = Post.query.filter_by(creator=user).order_by(Post.date.desc()).all()
     # posts = Post.query.order_by(desc(Post.votecount)).all()
-    
+
 
     votes = []
     comments = []
@@ -744,7 +743,7 @@ def user_account(username):
         comments.append(comments_count)
         communities.append(post.community.community_name)
 
-    return render_template('user_account.html', posts=posts, user=user, 
+    return render_template('user_account.html', posts=posts, user=user,
         votes=votes, comments=comments, communities=communities)
 
 @app.route("/k/<community_name>/post/<int:post_id>/send_sms", methods=['GET', 'POST'])
@@ -753,7 +752,7 @@ def send_twilio_sms(community_name, post_id):
     form = SendTextForm()
 
     if form.validate_on_submit():
-        
+
 
         post = Post.query.get_or_404(post_id)
         if post.image_url != None and post.body != None:

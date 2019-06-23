@@ -1,5 +1,7 @@
 <p align="center">
+  <a href="https://www.github.com/Kumsy/Keddit">
   <img src="static/images/keddit_logo_image_dark.png" width="550" title="Keddit">
+  </a>
 </p>
 
 <p align="center">
@@ -35,9 +37,9 @@ ___________________________________
 
 ## What's Keddit?
 
-Keddit is a full-stack community-driven social media site built from the ground-up, inspired by &nbsp; <img src="static/images/reddit-logo.png" width="90" title="Reddit">
+Keddit is a full-stack community-driven social media site built from the ground-up, inspired by &nbsp; <a href="https://www.reddit.com"><img src="static/images/reddit-logo.png" width="90" title="Reddit"></a>
 
-Users are able to create an account, upload their custom profile picture, create communities, post topics, comment, share posts, and vote on posts and comments. Posts may be up-voted or down-voted by other registered members on Keddit. If a post from any community has enough up-votes, it may be featured on Keddit's main front page often referred to as 'k/ popular'.
+Users are able to create an account, upload their custom profile picture, create communities, post topics, comment, share posts, and vote on posts and comments. Posts may be up-voted or down-voted by other registered members on Keddit. If a post from any community has enough up-votes, it may be featured on Keddit's front page often referred to as 'k/ popular'.
 
 ---
 
@@ -91,38 +93,35 @@ pip3 install flask-bcrypt
 ```
 
 ### Configuration
-<sub>We will now use your API keys to configure our server.</sub>
-###### From within our project directory:
-```
-mkdir config
-cd config
-touch config.json
-```
-###### Config.json:
-```
-Coming Soon
-```
+<sub>:bulb:&nbsp; We will now use your API keys to configure our server.</sub>
 
+<sub>
+Coming soon
+</sub>
 
+#####
 
 ---
 
 ## APIs
 
 <p>
-  <img src="https://res.cloudinary.com/cloudinary/image/upload/c_scale,w_200/v1/logo/for_white_bg/cloudinary_icon_for_white_bg.png"       width="60" title="Cloudinary">
+  <a href="https://cloudinary.com">
+  <img src="https://res.cloudinary.com/cloudinary/image/upload/c_scale,w_200/v1/logo/for_white_bg/cloudinary_icon_for_white_bg.png"       width="60" title="Cloudinary"></a>
   <b>Cloudinary</b> - Images and GIFs from posts are automatically uploaded to a cloud server.
 </p>
 
 
 <p>&nbsp;
-  <img src="static/images/giphybadge.gif" width="40" title="GIPHY">&nbsp;&nbsp;
+   <a href="https://developers.giphy.com/">
+     <img src="static/images/giphybadge.gif" width="40" title="Giphy"></a>&nbsp;&nbsp;
   <b>Giphy</b> - Users can search for their favorites GIFs powered by GIPHY.
 </p>
 
 
 <p>&nbsp;
-  <img src="static/images/twilio-vector-logo.png" width="40" title="Twilio">&nbsp;
+  <a href="https://www.twilio.com/">
+    <img src="static/images/twilio-vector-logo.png" width="40" title="Twilio"></a>&nbsp;
   <b>Twilio</b> - Users can share posts and send the contents via SMS and MMS.
 </p>
 
@@ -133,18 +132,25 @@ Coming Soon
 
 ## Tech Stack
 <p>
-  <img class="tech-stack-python" src="static/images/Python.png" width="120">&nbsp;
-  <img class="tech-stack-psql" src="static/images/psql.png" width="60">&nbsp;&nbsp;&nbsp;
-  <img class="tech-stack-flask" src="static/images/flask.png" width="45">&nbsp;&nbsp;&nbsp;
-  <img class="tech-stack-jinja" src="static/images/jinja2.png" width="55">&nbsp;
-  <img class="tech-stack-js" src="static/images/jslogo.png" width="60">&nbsp;
+  <a href="https://www.python.org/">
+    <img class="tech-stack-python" src="static/images/Python.png" width="120"></a>&nbsp;
+   <a href="https://www.postgresql.org/">
+     <img class="tech-stack-psql" src="static/images/psql.png" width="60"></a>&nbsp;&nbsp;&nbsp;
+  <a href="http://flask.pocoo.org/">
+    <img class="tech-stack-flask" src="static/images/flask.png" width="45"></a>&nbsp;&nbsp;&nbsp;
+  <a href="http://jinja.pocoo.org/docs/2.10/">
+    <img class="tech-stack-jinja" src="static/images/jinja2.png" width="55"></a>&nbsp;
+  <a href="https://www.javascript.com/">
+    <img class="tech-stack-js" src="static/images/jslogo.png" width="60"></a>&nbsp;
 </p>
   
   ----
 ## Author
 
 <p align="center">
-  <img src="static/images/kristen_snoo.PNG">
+  <a href="https://www.github.com/Kumsy/Keddit">
+    <img src="static/images/kristen_snoo.PNG">
+  </a>
 </p>
 <p align="center"><b>Kristen Campbell</b> is a Software Engineer in San Francisco, CA.</p>
 
